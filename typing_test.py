@@ -4,7 +4,20 @@ import json
 with open('texts.json') as f:
     texts = json.load(f)
 
-paragraph = texts['easy'][0]
+print("Select difficulty level:")
+print("1. Easy\n2. Medium\n3. Hard")
+difficulty = input("Enter the number of your choice: ")
+
+if difficulty == '1':
+    paragraph = texts['easy'][0]
+elif difficulty == '2':
+    paragraph = texts['medium'][0]
+elif difficulty == '3':
+    paragraph = texts['hard'][0]
+else:
+    print("Invalid choice. Defaulting to easy.")
+    paragraph = texts['easy'][0]
+
 print(paragraph)
 
 input("Press Enter to start typing...")
@@ -20,5 +33,4 @@ typed_chars = len(user_input)
 errors = sum(1 for i, c in enumerate(paragraph) if i < typed_chars and c != user_input[i])
 accuracy = (1 - errors / expected_chars) * 100 if expected_chars > 0 else 0
 
-print(f"Your typing speed: {wpm:.2f} WPM")
-print(f"Accuracy: {accuracy:.2f}%")
+print(f"WPM: {wpm:.2f}, Accuracy: {accuracy:.2f}%")
