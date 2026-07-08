@@ -20,17 +20,22 @@ else:
 
 print(paragraph)
 
+print("Select time mode:")
+print("1. 30 seconds\n2. 1 minute\n3. 2 minutes")
+time_mode = input("Enter the number of your choice: ")
+
+if time_mode == '1':
+    time_limit = 30
+elif time_mode == '2':
+    time_limit = 60
+elif time_mode == '3':
+    time_limit = 120
+else:
+    print("Invalid choice. Defaulting to 30 seconds.")
+    time_limit = 30
+
 input("Press Enter to start typing...")
 start_time = time.time()
 user_input = input("Type the paragraph above:")
-elapsed_time = time.time() - start_time
 
-words = len(user_input.split())
-wpm = (words / (elapsed_time / 60)) if elapsed_time > 0 else 0
-
-expected_chars = len(paragraph)
-typed_chars = len(user_input)
-errors = sum(1 for i, c in enumerate(paragraph) if i < typed_chars and c != user_input[i])
-accuracy = (1 - errors / expected_chars) * 100 if expected_chars > 0 else 0
-
-print(f"WPM: {wpm:.2f}, Accuracy: {accuracy:.2f}%")
+...
